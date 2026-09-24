@@ -8,10 +8,11 @@
 </head>
 <body>
 <div class="app">
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
     <div class="brand"><img class="logo-img" src="logo-r.png" alt="REKARENO"><div><b>Rekareno ERP</b><small data-i18n="brandSub">原型 v0.5</small></div></div>
-    <div style="padding:0 18px 10px;color:#f97316;font-size:11px;letter-spacing:.5px">BUILD 2026-09-24-C</div>
-    <nav>
+    <div style="padding:0 18px 10px;color:#f97316;font-size:11px;letter-spacing:.5px">BUILD 2026-09-24-D · 手机/电脑自适应</div>
+    <nav id="mainNav">
       <a class="nav-item active" data-page="overview" data-i18n="nav_overview">1 · 总览</a>
       <a class="nav-item" data-page="customers" data-i18n="nav_customers">2 · 客户跟踪</a>
 
@@ -408,6 +409,17 @@ document.querySelectorAll('[data-action]').forEach(btn=>btn.onclick=()=>{
 });
 document.querySelectorAll('.nav-children').forEach(el=>el.classList.add('open'));
 document.querySelectorAll('.nav-parent,.nav-parent2').forEach(el=>el.classList.add('open'));
+// 手机端：汉堡按钮展开/收起侧栏
+try{
+  var mt=document.getElementById('menuToggle'), sb=document.getElementById('sidebar');
+  if(mt&&sb){
+    if(window.matchMedia('(max-width:720px)').matches){ sb.classList.add('collapsed'); }
+    mt.addEventListener('click',function(){ sb.classList.toggle('collapsed'); });
+    document.querySelectorAll('.nav-item[data-page],.nav-grandchild,.nav-child[data-page]').forEach(function(el){
+      el.addEventListener('click',function(){ if(window.matchMedia('(max-width:720px)').matches) sb.classList.add('collapsed'); });
+    });
+  }
+}catch(e){}
 let saved='zh';
 try{saved=localStorage.getItem('rekareno_lang')||'zh';}catch(e){}
 applyLang(saved);

@@ -104,3 +104,39 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .trow.grand span{color:var(--txt);font-weight:600}
 .trow.grand b{color:var(--green);font-size:20px}
 
+/* ===== 响应式：手机 / 平板 ===== */
+@media (max-width:900px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;border-right:0;border-bottom:1px solid var(--line);padding:12px 0;max-height:60vh;overflow:auto}
+  .sidebar.collapsed nav,.sidebar.collapsed .sidebar-foot{display:none}
+  .brand{padding:0 14px 12px;margin-bottom:8px}
+  .menu-toggle{display:inline-flex}
+  .topbar{height:auto;flex-wrap:wrap;gap:8px;padding:10px 14px}
+  .topbar h1{font-size:16px;width:100%}
+  .topbar-right{width:100%;flex-wrap:wrap}
+  .page{padding:14px;overflow-x:hidden}
+  .cards{grid-template-columns:1fr;gap:12px}
+  .card .v{font-size:22px}
+  .toolbar{flex-wrap:wrap}
+  .input{min-width:0;flex:1}
+  .btn.primary{margin-left:0;width:100%}
+  .panel{overflow-x:auto}
+  .table{min-width:560px;font-size:12px}
+  .table th,.table td{padding:9px 10px;white-space:nowrap}
+  .feed li{flex-wrap:wrap;gap:6px;padding:12px 14px}
+  .feed li b{min-width:0;width:100%}
+  .detail-head{flex-direction:column;gap:12px}
+  .detail-actions{width:100%;flex-wrap:wrap}
+  .totals{max-width:100%;margin-left:0}
+  .set-row{flex-wrap:wrap;gap:8px}
+}
+@media (max-width:400px){
+  .nav-item,.nav-parent{font-size:13px;padding:9px 10px}
+  .lang-btn{padding:4px 9px;font-size:11px}
+}
+/* 桌面端不显示汉堡按钮 */
+.menu-toggle{display:none;background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;line-height:1}
+

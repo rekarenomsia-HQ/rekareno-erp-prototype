@@ -22,6 +22,10 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .topbar-right{display:flex;gap:8px}
 .pill{background:var(--panel2);border:1px solid var(--line);padding:5px 12px;border-radius:20px;font-size:12px}
 .pill.ghost{color:var(--muted)}
+.lang-switch{display:flex;gap:2px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:2px;margin-left:6px}
+.lang-btn{background:transparent;border:0;color:var(--muted);font-size:12px;padding:4px 12px;border-radius:20px;cursor:pointer;font-weight:600;transition:.15s}
+.lang-btn:hover{color:var(--txt)}
+.lang-btn.active{background:var(--brand);color:#fff}
 .page{display:none;padding:24px;overflow:auto}
 .page.active{display:block}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}

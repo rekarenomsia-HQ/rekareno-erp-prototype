@@ -27,6 +27,16 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .nav-child{padding:8px 12px;border-radius:8px;color:var(--muted);font-size:13px;cursor:pointer;transition:.15s}
 .nav-child:hover{background:var(--panel2);color:var(--txt)}
 .nav-child.active{background:var(--brand);color:#fff;font-weight:600}
+.nav-parent2{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.nav-parent2::after{content:"▾";font-size:10px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
+.nav-parent2.open::after{transform:rotate(0)}
+.nav-grandchildren{display:none;flex-direction:column;gap:1px;padding-left:10px;border-left:1px solid var(--line);margin:2px 0 4px 10px}
+.nav-grandchildren.open{display:flex}
+.nav-grandchild{padding:7px 10px;border-radius:7px;color:var(--muted);font-size:12.5px;cursor:pointer;transition:.15s}
+.nav-grandchild:hover{background:var(--panel2);color:var(--txt)}
+.nav-grandchild.active{background:var(--brand);color:#fff;font-weight:600}
+.nav-children{overflow:hidden}
+.nav-child{display:block}
 .card.clickable{cursor:pointer}
 .card.clickable:hover{border-color:var(--brand)}
 .set-row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 18px;border-bottom:1px solid var(--line);font-size:14px}

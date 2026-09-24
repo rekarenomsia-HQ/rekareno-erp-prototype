@@ -3,29 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rekareno ERP · 原型</title>
+<title>Rekareno ERP · 报价模块</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
-    <div class="brand"><span class="logo">R</span><div><b>Rekareno ERP</b><small data-i18n="brandSub">核心闭环 v0.1 原型</small></div></div>
+    <div class="brand"><span class="logo">R</span><div><b>Rekareno ERP</b><small data-i18n="brandSub">报价模块 v0.2 原型</small></div></div>
     <nav>
-      <a class="nav-item active" data-page="dashboard" data-i18n="nav_dashboard">📊 工作台</a>
-      <a class="nav-item" data-page="customers" data-i18n="nav_customers">👤 客户管理</a>
-      <a class="nav-item" data-page="quotes" data-i18n="nav_quotes">🧾 需求报价</a>
-      <a class="nav-item" data-page="deals" data-i18n="nav_deals">✍️ 签单管理</a>
-      <a class="nav-item" data-page="projects" data-i18n="nav_projects">🏗️ 工程进度</a>
+      <a class="nav-item active" data-page="quotes" data-i18n="nav_quotes">🧾 报价单</a>
+      <a class="nav-item" data-page="items" data-i18n="nav_items">📚 报价项库</a>
+      <a class="nav-item" data-page="detail" data-i18n="nav_detail">📄 报价明细</a>
     </nav>
     <div class="sidebar-foot" data-i18n="footNote">P1 原型 · 非生产</div>
   </aside>
 
   <main class="main">
     <header class="topbar">
-      <h1 id="pageTitle" data-i18n="nav_dashboard">工作台</h1>
+      <h1 id="pageTitle" data-i18n="nav_quotes">报价单</h1>
       <div class="topbar-right">
         <span class="pill">Mr Sheldom</span>
-        <span class="pill ghost" data-i18n="roleAdmin">平台管理员</span>
         <div class="lang-switch">
           <button class="lang-btn active" data-lang="zh">中文</button>
           <button class="lang-btn" data-lang="en">EN</button>
@@ -33,105 +30,101 @@
       </div>
     </header>
 
-    <section class="page active" id="page-dashboard">
-      <div class="cards">
-        <div class="card"><div class="k" data-i18n="k_newCustomers">本月新客户</div><div class="v">18</div><div class="d up" data-i18n="k_newCustomersD">+5 vs 上月</div></div>
-        <div class="card"><div class="k" data-i18n="k_pendingQuotes">待报价</div><div class="v">7</div><div class="d" data-i18n="k_pendingQuotesD">3 条超 3 天</div></div>
-        <div class="card"><div class="k" data-i18n="k_signed">已签单（本月）</div><div class="v">RM 96,400</div><div class="d up">+12%</div></div>
-        <div class="card"><div class="k" data-i18n="k_active">在建工程</div><div class="v">5</div><div class="d" data-i18n="k_activeD">1 个逾期</div></div>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><h2 data-i18n="feedTitle">最近动态</h2></div>
-        <ul class="feed">
-          <li><b>王先生 · JED B-12-03</b><span data-i18n="f1">报价已发出 · 待确认</span><em data-i18n="t10m">10 分钟前</em></li>
-          <li><b>陈女士 · JED A-08-11</b><span data-i18n="f2">签约完成 · 已转工程</span><em data-i18n="t2h">2 小时前</em></li>
-          <li><b>林先生 · JED C-15-07</b><span data-i18n="f3">新增需求 · 待派单</span><em data-i18n="tYest">昨天</em></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="page" id="page-customers">
-      <div class="toolbar">
-        <input class="input" data-i18n-ph="ph_searchCustomer" placeholder="搜索姓名 / 电话 / 房号">
-        <select class="input">
-          <option data-i18n="statusAll">全部状态</option>
-          <option data-i18n="st_new">新客户</option>
-          <option data-i18n="st_follow">跟进中</option>
-          <option data-i18n="st_quoted">已报价</option>
-          <option data-i18n="st_signed">已签单</option>
-        </select>
-        <button class="btn primary" data-i18n="btn_addCustomer">+ 新增客户</button>
-      </div>
-      <table class="table">
-        <thead><tr>
-          <th data-i18n="th_name">姓名</th><th data-i18n="th_phone">电话</th><th data-i18n="th_unit">项目/房号</th>
-          <th data-i18n="th_source">来源</th><th data-i18n="th_status">状态</th><th data-i18n="th_owner">跟进人</th><th data-i18n="th_action">操作</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>王先生</td><td>012-345 6789</td><td>JED Residensi · B-12-03</td><td data-i18n="src_online">线上广告</td><td><span class="tag blue" data-i18n="st_quoted">已报价</span></td><td>Nelson</td><td><a data-i18n="act_detail">详情</a></td></tr>
-          <tr><td>陈女士</td><td>019-876 5432</td><td>JED Residensi · A-08-11</td><td data-i18n="src_ref">转介绍</td><td><span class="tag green" data-i18n="st_signed">已签单</span></td><td>Jack</td><td><a data-i18n="act_detail">详情</a></td></tr>
-          <tr><td>林先生</td><td>016-222 3344</td><td>JED Residensi · C-15-07</td><td data-i18n="src_showroom">展厅</td><td><span class="tag gray" data-i18n="st_new">新客户</span></td><td>—</td><td><a data-i18n="act_detail">详情</a></td></tr>
-          <tr><td>黄小姐</td><td>011-999 8888</td><td>JED Residensi · D-02-09</td><td data-i18n="src_online">线上广告</td><td><span class="tag orange" data-i18n="st_follow">跟进中</span></td><td>Yao</td><td><a data-i18n="act_detail">详情</a></td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="page" id="page-quotes">
+    <!-- ===== 报价单列表 ===== -->
+    <section class="page active" id="page-quotes">
       <div class="toolbar">
         <input class="input" data-i18n-ph="ph_searchQuote" placeholder="搜索客户 / 报价单号">
+        <select class="input">
+          <option data-i18n="qsAll">全部状态</option>
+          <option data-i18n="qs_draft">草稿</option>
+          <option data-i18n="qs_sent">已发出</option>
+          <option data-i18n="qs_accepted">已接受</option>
+          <option data-i18n="qs_rejected">已拒绝</option>
+        </select>
         <button class="btn primary" data-i18n="btn_addQuote">+ 新建报价</button>
       </div>
       <table class="table">
         <thead><tr>
-          <th data-i18n="th_quoteNo">报价单号</th><th data-i18n="th_customer">客户</th><th data-i18n="th_layout">户型</th>
-          <th data-i18n="th_amount">金额 (RM)</th><th data-i18n="th_status">状态</th><th data-i18n="th_validity">有效期</th>
+          <th data-i18n="th_quoteNo">报价单号</th><th data-i18n="th_customer">客户</th><th data-i18n="th_unit">项目/房号</th>
+          <th data-i18n="th_amount">金额 (RM)</th><th data-i18n="th_status">状态</th><th data-i18n="th_validity">有效期</th><th data-i18n="th_action">操作</th>
         </tr></thead>
         <tbody>
-          <tr><td>Q-202609-014</td><td>王先生</td><td data-i18n="ly_3r2l_1100">3房2厅 · 1100sqft</td><td>38,500</td><td><span class="tag blue" data-i18n="qs_sent">已发出</span></td><td>2026-10-08</td></tr>
-          <tr><td>Q-202609-013</td><td>黄小姐</td><td data-i18n="ly_2r1l_850">2房1厅 · 850sqft</td><td>26,800</td><td><span class="tag gray" data-i18n="qs_draft">草稿</span></td><td>—</td></tr>
-          <tr><td>Q-202609-011</td><td>陈女士</td><td data-i18n="ly_3r2l_1150">3房2厅 · 1150sqft</td><td>41,200</td><td><span class="tag green" data-i18n="qs_accepted">已接受</span></td><td>2026-09-30</td></tr>
+          <tr><td>Q-202609-014</td><td>王先生</td><td>JED · B-12-03</td><td>36,575</td><td><span class="tag blue" data-i18n="qs_sent">已发出</span></td><td>2026-10-08</td><td><a class="link-detail" data-quote="q014" data-i18n="act_view">查看明细</a></td></tr>
+          <tr><td>Q-202609-013</td><td>黄小姐</td><td>JED · D-02-09</td><td>26,800</td><td><span class="tag gray" data-i18n="qs_draft">草稿</span></td><td>—</td><td><a class="link-detail" data-quote="q013" data-i18n="act_view">查看明细</a></td></tr>
+          <tr><td>Q-202609-011</td><td>陈女士</td><td>JED · A-08-11</td><td>41,200</td><td><span class="tag green" data-i18n="qs_accepted">已接受</span></td><td>2026-09-30</td><td><a class="link-detail" data-quote="q011" data-i18n="act_view">查看明细</a></td></tr>
         </tbody>
       </table>
     </section>
 
-    <section class="page" id="page-deals">
+    <!-- ===== 报价项库 ===== -->
+    <section class="page" id="page-items">
       <div class="toolbar">
-        <input class="input" data-i18n-ph="ph_searchDeal" placeholder="搜索客户 / 合同号">
-        <button class="btn primary" data-i18n="btn_addDeal">+ 新建签单</button>
-      </div>
-      <table class="table">
-        <thead><tr>
-          <th data-i18n="th_contractNo">合同号</th><th data-i18n="th_customer">客户</th><th data-i18n="th_dealAmount">签约金额 (RM)</th>
-          <th data-i18n="th_signDate">签约日期</th><th data-i18n="th_payPlan">付款计划</th><th data-i18n="th_status">状态</th>
-        </tr></thead>
-        <tbody>
-          <tr><td>C-202609-007</td><td>陈女士</td><td>41,200</td><td>2026-09-22</td><td>30/40/30</td><td><span class="tag green" data-i18n="ds_active">已生效</span></td></tr>
-          <tr><td>C-202609-006</td><td>李先生</td><td>55,000</td><td>2026-09-15</td><td>30/40/30</td><td><span class="tag blue" data-i18n="ds_pendingDeposit">待付定金</span></td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="page" id="page-projects">
-      <div class="toolbar">
-        <input class="input" data-i18n-ph="ph_searchProject" placeholder="搜索工程 / 客户">
+        <input class="input" data-i18n-ph="ph_searchItem" placeholder="搜索项目名称">
         <select class="input">
-          <option data-i18n="phaseAll">全部阶段</option>
-          <option data-i18n="ph_notStarted">待开工</option>
-          <option data-i18n="ph_inProgress">施工中</option>
-          <option data-i18n="ph_completed">已完工</option>
+          <option data-i18n="catAll">全部类别</option>
+          <option data-i18n="cat_carpentry">木工</option>
+          <option data-i18n="cat_custom">定制</option>
+          <option data-i18n="cat_paint">油漆</option>
+          <option data-i18n="cat_tiling">泥水</option>
+          <option data-i18n="cat_wiring">水电</option>
         </select>
+        <button class="btn primary" data-i18n="btn_addItem">+ 新增报价项</button>
       </div>
       <table class="table">
         <thead><tr>
-          <th data-i18n="th_projectNo">工程号</th><th data-i18n="th_customerUnit">客户/房号</th><th data-i18n="th_phase">阶段</th>
-          <th data-i18n="th_progress">进度</th><th data-i18n="th_person">负责人</th><th data-i18n="th_eta">预计完工</th>
+          <th data-i18n="th_itemName">项目名称</th><th data-i18n="th_category">类别</th><th data-i18n="th_unitType">单位</th>
+          <th data-i18n="th_unitPrice">单价 (RM)</th><th data-i18n="th_note">备注</th>
         </tr></thead>
         <tbody>
-          <tr><td>P-202609-004</td><td>陈女士 · A-08-11</td><td data-i18n="ph_cement">泥水</td><td><div class="bar"><i style="width:45%"></i></div>45%</td><td data-i18n="subA">承包商 A</td><td>2026-10-20</td></tr>
-          <tr><td>P-202609-003</td><td>李先生 · B-03-05</td><td data-i18n="ph_wiring">水电</td><td><div class="bar"><i style="width:20%"></i></div>20%</td><td data-i18n="subB">承包商 B</td><td>2026-11-05</td></tr>
-          <tr><td>P-202608-011</td><td>张先生 · A-11-02</td><td data-i18n="ph_paint">油漆</td><td><div class="bar"><i style="width:85%"></i></div>85%</td><td data-i18n="subA">承包商 A</td><td>2026-09-28</td></tr>
+          <tr><td data-i18n="it_ceiling">石膏板吊顶</td><td><span class="tag gray" data-i18n="cat_carpentry">木工</span></td><td>ft</td><td>35.00</td><td data-i18n="note_m2">按展开面积</td></tr>
+          <tr><td data-i18n="it_wardrobe">衣柜定制</td><td><span class="tag purple" data-i18n="cat_custom">定制</span></td><td>ft</td><td>480.00</td><td data-i18n="note_ply">含板材+五金</td></tr>
+          <tr><td data-i18n="it_kitchen">厨房橱柜</td><td><span class="tag purple" data-i18n="cat_custom">定制</span></td><td>ft</td><td>620.00</td><td data-i18n="note_top">含台面</td></tr>
+          <tr><td data-i18n="it_paint">全屋油漆</td><td><span class="tag blue2" data-i18n="cat_paint">油漆</span></td><td>sqft</td><td>3.50</td><td data-i18n="note_coat">含底漆一底两面</td></tr>
+          <tr><td data-i18n="it_tiling">地砖铺贴</td><td><span class="tag orange" data-i18n="cat_tiling">泥水</span></td><td>sqft</td><td>8.50</td><td data-i18n="note_tile">不含瓷砖主材</td></tr>
+          <tr><td data-i18n="it_wiring">水电改造</td><td><span class="tag green2" data-i18n="cat_wiring">水电</span></td><td>point</td><td>85.00</td><td data-i18n="note_point">按点位计</td></tr>
+          <tr><td data-i18n="it_lighting">灯具安装</td><td><span class="tag green2" data-i18n="cat_wiring">水电</span></td><td>pcs</td><td>25.00</td><td data-i18n="note_light">含安装人工</td></tr>
+          <tr><td data-i18n="it_floor">地板铺装</td><td><span class="tag gray" data-i18n="cat_carpentry">木工</span></td><td>sqft</td><td>12.00</td><td data-i18n="note_floor">含防潮垫</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <!-- ===== 报价明细 ===== -->
+    <section class="page" id="page-detail">
+      <div class="detail-head">
+        <div>
+          <div class="dh-no">Q-202609-014 <span class="tag blue" data-i18n="qs_sent">已发出</span></div>
+          <div class="dh-sub"><span data-i18n="d_customer">客户</span>: 王先生 · JED Residensi B-12-03 · <span data-i18n="d_layout">户型</span>: <span data-i18n="ly_3r2l_1100">3房2厅 · 1100sqft</span></div>
+          <div class="dh-sub"><span data-i18n="d_valid">有效期</span>: 2026-10-08 · <span data-i18n="d_owner">负责人</span>: Nelson</div>
+        </div>
+        <div class="detail-actions">
+          <button class="btn" data-i18n="btn_print">打印 / 导出 PDF</button>
+          <button class="btn primary" data-i18n="btn_convert">转为签单</button>
+        </div>
+      </div>
+
+      <table class="table detail-table">
+        <thead><tr>
+          <th style="width:60px">#</th><th data-i18n="th_space">区域</th><th data-i18n="th_itemName">项目名称</th>
+          <th data-i18n="th_unitType">单位</th><th data-i18n="th_qty">数量</th><th data-i18n="th_unitPrice">单价 (RM)</th><th data-i18n="th_subtotal">小计 (RM)</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>1</td><td data-i18n="sp_living">客厅</td><td data-i18n="it_ceiling">石膏板吊顶</td><td>ft</td><td>45</td><td>35.00</td><td>1,575.00</td></tr>
+          <tr><td>2</td><td data-i18n="sp_master">主卧</td><td data-i18n="it_wardrobe">衣柜定制</td><td>ft</td><td>12</td><td>480.00</td><td>5,760.00</td></tr>
+          <tr><td>3</td><td data-i18n="sp_kitchen">厨房</td><td data-i18n="it_kitchen">厨房橱柜</td><td>ft</td><td>14</td><td>620.00</td><td>8,680.00</td></tr>
+          <tr><td>4</td><td data-i18n="sp_all">全屋</td><td data-i18n="it_paint">全屋油漆</td><td>sqft</td><td>1100</td><td>3.50</td><td>3,850.00</td></tr>
+          <tr><td>5</td><td data-i18n="sp_all">全屋</td><td data-i18n="it_tiling">地砖铺贴</td><td>sqft</td><td>850</td><td>8.50</td><td>7,225.00</td></tr>
+          <tr><td>6</td><td data-i18n="sp_all">全屋</td><td data-i18n="it_wiring">水电改造</td><td>point</td><td>60</td><td>85.00</td><td>5,100.00</td></tr>
+          <tr><td>7</td><td data-i18n="sp_all">全屋</td><td data-i18n="it_lighting">灯具安装</td><td>pcs</td><td>38</td><td>25.00</td><td>950.00</td></tr>
+          <tr><td>8</td><td data-i18n="sp_2nd">次卧</td><td data-i18n="it_floor">地板铺装</td><td>sqft</td><td>120</td><td>12.00</td><td>1,440.00</td></tr>
+        </tbody>
+      </table>
+
+      <div class="totals">
+        <div class="trow"><span data-i18n="t_subtotal">小计</span><b>RM 34,580.00</b></div>
+        <div class="trow"><span data-i18n="t_discount">折扣 (-5%)</span><b class="minus">- RM 1,729.00</b></div>
+        <div class="trow"><span data-i18n="t_tax">税</span><b>RM 0.00</b></div>
+        <div class="trow grand"><span data-i18n="t_total">总计</span><b>RM 32,851.00</b></div>
+      </div>
     </section>
   </main>
 </div>
@@ -139,88 +132,74 @@
 <script>
 const I18N = {
   zh: {
-    brandSub:"核心闭环 v0.1 原型", footNote:"P1 原型 · 非生产", roleAdmin:"平台管理员",
-    nav_dashboard:"📊 工作台", nav_customers:"👤 客户管理", nav_quotes:"🧾 需求报价", nav_deals:"✍️ 签单管理", nav_projects:"🏗️ 工程进度",
-    k_newCustomers:"本月新客户", k_newCustomersD:"+5 vs 上月", k_pendingQuotes:"待报价", k_pendingQuotesD:"3 条超 3 天",
-    k_signed:"已签单（本月）", k_active:"在建工程", k_activeD:"1 个逾期",
-    feedTitle:"最近动态", f1:"报价已发出 · 待确认", f2:"签约完成 · 已转工程", f3:"新增需求 · 待派单",
-    t10m:"10 分钟前", t2h:"2 小时前", tYest:"昨天",
-    ph_searchCustomer:"搜索姓名 / 电话 / 房号", ph_searchQuote:"搜索客户 / 报价单号", ph_searchDeal:"搜索客户 / 合同号", ph_searchProject:"搜索工程 / 客户",
-    statusAll:"全部状态", st_new:"新客户", st_follow:"跟进中", st_quoted:"已报价", st_signed:"已签单",
-    btn_addCustomer:"+ 新增客户", btn_addQuote:"+ 新建报价", btn_addDeal:"+ 新建签单",
-    th_name:"姓名", th_phone:"电话", th_unit:"项目/房号", th_source:"来源", th_status:"状态", th_owner:"跟进人", th_action:"操作",
-    th_quoteNo:"报价单号", th_customer:"客户", th_layout:"户型", th_amount:"金额 (RM)", th_validity:"有效期",
-    th_contractNo:"合同号", th_dealAmount:"签约金额 (RM)", th_signDate:"签约日期", th_payPlan:"付款计划",
-    th_projectNo:"工程号", th_customerUnit:"客户/房号", th_phase:"阶段", th_progress:"进度", th_person:"负责人", th_eta:"预计完工",
-    src_online:"线上广告", src_ref:"转介绍", src_showroom:"展厅", act_detail:"详情",
-    qs_sent:"已发出", qs_draft:"草稿", qs_accepted:"已接受",
-    ds_active:"已生效", ds_pendingDeposit:"待付定金",
-    phaseAll:"全部阶段", ph_notStarted:"待开工", ph_inProgress:"施工中", ph_completed:"已完工",
-    ph_cement:"泥水", ph_wiring:"水电", ph_paint:"油漆", subA:"承包商 A", subB:"承包商 B",
-    ly_3r2l_1100:"3房2厅 · 1100sqft", ly_3r2l_1150:"3房2厅 · 1150sqft", ly_2r1l_850:"2房1厅 · 850sqft"
+    brandSub:"报价模块 v0.2 原型", footNote:"P1 原型 · 非生产",
+    nav_quotes:"🧾 报价单", nav_items:"📚 报价项库", nav_detail:"📄 报价明细",
+    ph_searchQuote:"搜索客户 / 报价单号", ph_searchItem:"搜索项目名称",
+    qsAll:"全部状态", qs_draft:"草稿", qs_sent:"已发出", qs_accepted:"已接受", qs_rejected:"已拒绝",
+    btn_addQuote:"+ 新建报价", btn_addItem:"+ 新增报价项", btn_print:"打印 / 导出 PDF", btn_convert:"转为签单",
+    th_quoteNo:"报价单号", th_customer:"客户", th_unit:"项目/房号", th_amount:"金额 (RM)", th_status:"状态", th_validity:"有效期", th_action:"操作",
+    th_itemName:"项目名称", th_category:"类别", th_unitType:"单位", th_unitPrice:"单价 (RM)", th_note:"备注",
+    th_space:"区域", th_qty:"数量", th_subtotal:"小计 (RM)",
+    act_view:"查看明细",
+    catAll:"全部类别", cat_carpentry:"木工", cat_custom:"定制", cat_paint:"油漆", cat_tiling:"泥水", cat_wiring:"水电",
+    it_ceiling:"石膏板吊顶", it_wardrobe:"衣柜定制", it_kitchen:"厨房橱柜", it_paint:"全屋油漆",
+    it_tiling:"地砖铺贴", it_wiring:"水电改造", it_lighting:"灯具安装", it_floor:"地板铺装",
+    note_m2:"按展开面积", note_ply:"含板材+五金", note_top:"含台面", note_coat:"含底漆一底两面",
+    note_tile:"不含瓷砖主材", note_point:"按点位计", note_light:"含安装人工", note_floor:"含防潮垫",
+    d_customer:"客户", d_layout:"户型", d_valid:"有效期", d_owner:"负责人", ly_3r2l_1100:"3房2厅 · 1100sqft",
+    sp_living:"客厅", sp_master:"主卧", sp_kitchen:"厨房", sp_all:"全屋", sp_2nd:"次卧",
+    t_subtotal:"小计", t_discount:"折扣 (-5%)", t_tax:"税", t_total:"总计"
   },
   en: {
-    brandSub:"Core Loop v0.1 Prototype", footNote:"P1 Prototype · Non-production", roleAdmin:"Platform Admin",
-    nav_dashboard:"📊 Dashboard", nav_customers:"👤 Customers", nav_quotes:"🧾 Quotes", nav_deals:"✍️ Deals", nav_projects:"🏗️ Projects",
-    k_newCustomers:"New Customers (MTD)", k_newCustomersD:"+5 vs last month", k_pendingQuotes:"Pending Quotes", k_pendingQuotesD:"3 over 3 days",
-    k_signed:"Signed (MTD)", k_active:"Active Projects", k_activeD:"1 overdue",
-    feedTitle:"Recent Activity", f1:"Quote sent · awaiting confirmation", f2:"Contract signed · moved to projects", f3:"New request · unassigned",
-    t10m:"10 min ago", t2h:"2 hours ago", tYest:"Yesterday",
-    ph_searchCustomer:"Search name / phone / unit", ph_searchQuote:"Search customer / quote no.", ph_searchDeal:"Search customer / contract no.", ph_searchProject:"Search project / customer",
-    statusAll:"All statuses", st_new:"New", st_follow:"Following up", st_quoted:"Quoted", st_signed:"Signed",
-    btn_addCustomer:"+ Add Customer", btn_addQuote:"+ New Quote", btn_addDeal:"+ New Deal",
-    th_name:"Name", th_phone:"Phone", th_unit:"Project / Unit", th_source:"Source", th_status:"Status", th_owner:"Owner", th_action:"Action",
-    th_quoteNo:"Quote No.", th_customer:"Customer", th_layout:"Layout", th_amount:"Amount (RM)", th_validity:"Valid Until",
-    th_contractNo:"Contract No.", th_dealAmount:"Deal Amount (RM)", th_signDate:"Sign Date", th_payPlan:"Payment Plan",
-    th_projectNo:"Project No.", th_customerUnit:"Customer / Unit", th_phase:"Phase", th_progress:"Progress", th_person:"In Charge", th_eta:"Est. Completion",
-    src_online:"Online Ads", src_ref:"Referral", src_showroom:"Showroom", act_detail:"Details",
-    qs_sent:"Sent", qs_draft:"Draft", qs_accepted:"Accepted",
-    ds_active:"Active", ds_pendingDeposit:"Deposit Pending",
-    phaseAll:"All phases", ph_notStarted:"Not Started", ph_inProgress:"In Progress", ph_completed:"Completed",
-    ph_cement:"Masonry", ph_wiring:"Plumbing & Electrical", ph_paint:"Painting", subA:"Contractor A", subB:"Contractor B",
-    ly_3r2l_1100:"3BR2LR · 1100sqft", ly_3r2l_1150:"3BR2LR · 1150sqft", ly_2r1l_850:"2BR1LR · 850sqft"
+    brandSub:"Quotation Module v0.2 Prototype", footNote:"P1 Prototype · Non-production",
+    nav_quotes:"🧾 Quotations", nav_items:"📚 Item Library", nav_detail:"📄 Quote Detail",
+    ph_searchQuote:"Search customer / quote no.", ph_searchItem:"Search item name",
+    qsAll:"All statuses", qs_draft:"Draft", qs_sent:"Sent", qs_accepted:"Accepted", qs_rejected:"Rejected",
+    btn_addQuote:"+ New Quote", btn_addItem:"+ Add Item", btn_print:"Print / Export PDF", btn_convert:"Convert to Deal",
+    th_quoteNo:"Quote No.", th_customer:"Customer", th_unit:"Project / Unit", th_amount:"Amount (RM)", th_status:"Status", th_validity:"Valid Until", th_action:"Action",
+    th_itemName:"Item Name", th_category:"Category", th_unitType:"Unit", th_unitPrice:"Unit Price (RM)", th_note:"Note",
+    th_space:"Area", th_qty:"Qty", th_subtotal:"Subtotal (RM)",
+    act_view:"View Detail",
+    catAll:"All categories", cat_carpentry:"Carpentry", cat_custom:"Custom", cat_paint:"Painting", cat_tiling:"Masonry", cat_wiring:"Plumbing & Electrical",
+    it_ceiling:"Gypsum Ceiling", it_wardrobe:"Custom Wardrobe", it_kitchen:"Kitchen Cabinet", it_paint:"Whole-unit Painting",
+    it_tiling:"Floor Tiling", it_wiring:"Wiring & Plumbing", it_lighting:"Lighting Installation", it_floor:"Flooring",
+    note_m2:"By surface area", note_ply:"Incl. board + hardware", note_top:"Incl. countertop", note_coat:"Incl. primer + 2 coats",
+    note_tile:"Excl. tiles", note_point:"Per point", note_light:"Incl. labour", note_floor:"Incl. underlay",
+    d_customer:"Customer", d_layout:"Layout", d_valid:"Valid Until", d_owner:"Owner", ly_3r2l_1100:"3BR2LR · 1100sqft",
+    sp_living:"Living Room", sp_master:"Master Bedroom", sp_kitchen:"Kitchen", sp_all:"Whole Unit", sp_2nd:"2nd Bedroom",
+    t_subtotal:"Subtotal", t_discount:"Discount (-5%)", t_tax:"Tax", t_total:"Total"
   }
 };
 
-let LANG = 'zh';
+let LANG='zh';
+const TITLE_KEY={quotes:'nav_quotes',items:'nav_items',detail:'nav_detail'};
+let CURRENT_PAGE='quotes';
 
-function applyLang(lang){
-  LANG = lang;
-  const dict = I18N[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if (dict[k]) el.textContent = dict[k];
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
-    const k = el.getAttribute('data-i18n-ph');
-    if (dict[k]) el.setAttribute('placeholder', dict[k]);
-  });
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-  document.documentElement.lang = (lang==='zh' ? 'zh-CN' : 'en');
-  try { localStorage.setItem('rekareno_lang', lang); } catch(e){}
-  refreshTitle();
-}
-
-const TITLE_KEY = {dashboard:'nav_dashboard',customers:'nav_customers',quotes:'nav_quotes',deals:'nav_deals',projects:'nav_projects'};
-let CURRENT_PAGE = 'dashboard';
 function refreshTitle(){
-  const el = document.getElementById('pageTitle');
-  el.textContent = I18N[LANG][TITLE_KEY[CURRENT_PAGE]];
+  document.getElementById('pageTitle').textContent = I18N[LANG][TITLE_KEY[CURRENT_PAGE]];
 }
-
-document.querySelectorAll('.nav-item').forEach(a=>a.onclick=()=>{
-  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  a.classList.add('active');
-  CURRENT_PAGE = a.dataset.page;
-  document.getElementById('page-'+CURRENT_PAGE).classList.add('active');
+function applyLang(lang){
+  LANG=lang; const d=I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(d[k]) el.textContent=d[k];});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph'); if(d[k]) el.setAttribute('placeholder',d[k]);});
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+  document.documentElement.lang=(lang==='zh'?'zh-CN':'en');
+  try{localStorage.setItem('rekareno_lang',lang);}catch(e){}
   refreshTitle();
-});
-
+}
+function goPage(p){
+  CURRENT_PAGE=p;
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active', x.dataset.page===p));
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  refreshTitle();
+}
+document.querySelectorAll('.nav-item').forEach(a=>a.onclick=()=>goPage(a.dataset.page));
 document.querySelectorAll('.lang-btn').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang));
+document.querySelectorAll('.link-detail').forEach(a=>a.onclick=()=>goPage('detail'));
 
-let saved = 'zh';
-try { saved = localStorage.getItem('rekareno_lang') || 'zh'; } catch(e){}
+let saved='zh';
+try{saved=localStorage.getItem('rekareno_lang')||'zh';}catch(e){}
 applyLang(saved);
 </script>
 </body>

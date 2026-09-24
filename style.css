@@ -19,7 +19,7 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .nav-group{display:flex;flex-direction:column;gap:4px}
 .nav-parent{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;color:var(--muted);font-size:14px;transition:.15s;cursor:pointer}
 .nav-parent:hover{background:var(--panel2);color:var(--txt)}
-.nav-parent::after{content:"â–¾";font-size:11px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
+.nav-parent::after{content:"\25BE";font-size:11px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
 .nav-parent.open::after{transform:rotate(0)}
 .nav-parent.open{color:var(--txt)}
 .nav-children{display:none;flex-direction:column;gap:2px;padding-left:12px;border-left:1px solid var(--line);margin:2px 0 4px 14px}
@@ -28,7 +28,7 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .nav-child:hover{background:var(--panel2);color:var(--txt)}
 .nav-child.active{background:var(--brand);color:#fff;font-weight:600}
 .nav-parent2{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
-.nav-parent2::after{content:"â–¾";font-size:10px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
+.nav-parent2::after{content:"\25BE";font-size:10px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
 .nav-parent2.open::after{transform:rotate(0)}
 .nav-grandchildren{display:none;flex-direction:column;gap:1px;padding-left:10px;border-left:1px solid var(--line);margin:2px 0 4px 10px}
 .nav-grandchildren.open{display:flex}

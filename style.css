@@ -105,10 +105,8 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .trow.grand b{color:var(--green);font-size:20px}
 
 /* ===== 响应式：手机 / 平板 ===== */
+
 @media (max-width:900px){
-  .cards{grid-template-columns:repeat(2,1fr)}
-}
-@media (max-width:720px){
   .app{flex-direction:column}
   .sidebar{width:100%;border-right:0;border-bottom:1px solid var(--line);padding:12px 0;max-height:60vh;overflow:auto}
   .sidebar.collapsed nav,.sidebar.collapsed .sidebar-foot{display:none}
@@ -138,5 +136,21 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
   .lang-btn{padding:4px 9px;font-size:11px}
 }
 /* 桌面端不显示汉堡按钮 */
-.menu-toggle{display:none;background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;line-height:1}
+.menu-toggle{display:none}
+
+/* ===== 手机端：右下角浮动圆形按钮 ===== */
+@media (max-width:900px){
+  .menu-toggle{
+    display:flex;align-items:center;justify-content:center;
+    position:fixed;right:18px;bottom:18px;z-index:999;
+    width:54px;height:54px;border-radius:50%;
+    background:var(--brand);border:0;color:#fff;
+    font-size:22px;line-height:1;cursor:pointer;
+    box-shadow:0 6px 20px rgba(249,115,22,.45);
+    transition:transform .15s
+  }
+  .menu-toggle:active{transform:scale(.92)}
+  /* 菜单展开时按钮变成 ✕ */
+  .sidebar:not(.collapsed) .menu-toggle{background:var(--panel2);color:var(--txt);box-shadow:0 4px 14px rgba(0,0,0,.4)}
+}
 

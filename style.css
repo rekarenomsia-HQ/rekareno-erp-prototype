@@ -7,7 +7,7 @@
 body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--txt)}
 .app{display:flex;min-height:100vh}
 .sidebar{width:230px;background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:16px 0}
-.logo-img{height:34px;width:34px;border-radius:9px;display:block;object-fit:cover}
+.logo-img{height:34px;width:34px;border-radius:9px;display:block;object-fit:cover;transform:scale(1.18);transform-origin:center}
 .brand{display:flex;gap:10px;align-items:center;padding:0 18px 18px;border-bottom:1px solid var(--line);margin-bottom:12px;overflow:hidden}
 .brand b{display:block;font-size:15px}
 .brand small{color:var(--muted);font-size:11px}
@@ -19,7 +19,7 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .nav-group{display:flex;flex-direction:column;gap:4px}
 .nav-parent{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;color:var(--muted);font-size:14px;transition:.15s;cursor:pointer}
 .nav-parent:hover{background:var(--panel2);color:var(--txt)}
-.nav-parent::after{content:"\25BE";font-size:11px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
+.nav-parent::after{content:"";width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;opacity:.7;transition:.2s;transform:rotate(-90deg)}
 .nav-parent.open::after{transform:rotate(0)}
 .nav-parent.open{color:var(--txt)}
 .nav-children{display:none;flex-direction:column;gap:2px;padding-left:12px;border-left:1px solid var(--line);margin:2px 0 4px 14px}
@@ -28,7 +28,7 @@ nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
 .nav-child:hover{background:var(--panel2);color:var(--txt)}
 .nav-child.active{background:var(--brand);color:#fff;font-weight:600}
 .nav-parent2{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
-.nav-parent2::after{content:"\25BE";font-size:10px;opacity:.7;transition:.2s;transform:rotate(-90deg)}
+.nav-parent2::after{content:"";width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;opacity:.7;transition:.2s;transform:rotate(-90deg)}
 .nav-parent2.open::after{transform:rotate(0)}
 .nav-grandchildren{display:none;flex-direction:column;gap:1px;padding-left:10px;border-left:1px solid var(--line);margin:2px 0 4px 10px}
 .nav-grandchildren.open{display:flex}

@@ -3,24 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rekareno ERP · 报价模块</title>
+<title>Rekareno ERP · 原型 v0.3</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
-    <div class="brand"><span class="logo">R</span><div><b>Rekareno ERP</b><small data-i18n="brandSub">报价模块 v0.2 原型</small></div></div>
+    <div class="brand"><span class="logo">R</span><div><b>Rekareno ERP</b><small data-i18n="brandSub">原型 v0.3</small></div></div>
     <nav>
-      <a class="nav-item active" data-page="quotes" data-i18n="nav_quotes">🧾 报价单</a>
-      <a class="nav-item" data-page="items" data-i18n="nav_items">📚 报价项库</a>
-      <a class="nav-item" data-page="detail" data-i18n="nav_detail">📄 报价明细</a>
+      <a class="nav-item active" data-page="overview" data-i18n="nav_overview">1 · 总览</a>
+      <a class="nav-item" data-page="customers" data-i18n="nav_customers">2 · 客户跟踪</a>
+
+      <div class="nav-group" id="grpQuote">
+        <a class="nav-item nav-parent" data-toggle="quote" data-i18n="nav_quote">3 · 报价区</a>
+        <div class="nav-children" id="childQuote">
+          <a class="nav-child" data-page="quotes" data-i18n="nav_quotes">3.1 报价单</a>
+          <a class="nav-child" data-page="items" data-i18n="nav_items">3.2 报价项库</a>
+          <a class="nav-child" data-page="detail" data-i18n="nav_detail">3.3 报价明细</a>
+        </div>
+      </div>
+
+      <a class="nav-item" data-page="settings" data-i18n="nav_settings">4 · 设定</a>
     </nav>
     <div class="sidebar-foot" data-i18n="footNote">P1 原型 · 非生产</div>
   </aside>
 
   <main class="main">
     <header class="topbar">
-      <h1 id="pageTitle" data-i18n="nav_quotes">报价单</h1>
+      <h1 id="pageTitle" data-i18n="nav_overview">总览</h1>
       <div class="topbar-right">
         <span class="pill">Mr Sheldom</span>
         <div class="lang-switch">
@@ -30,8 +40,53 @@
       </div>
     </header>
 
-    <!-- ===== 报价单列表 ===== -->
-    <section class="page active" id="page-quotes">
+    <!-- ===== 1 总览 ===== -->
+    <section class="page active" id="page-overview">
+      <div class="cards">
+        <div class="card"><div class="k" data-i18n="k_newCustomers">本月新客户</div><div class="v">18</div><div class="d up" data-i18n="k_newCustomersD">+5 vs 上月</div></div>
+        <div class="card clickable" data-goto="quotes"><div class="k" data-i18n="k_pendingQuotes">待报价</div><div class="v">7</div><div class="d" data-i18n="k_pendingQuotesD">3 条超 3 天</div></div>
+        <div class="card"><div class="k" data-i18n="k_signed">已签单（本月）</div><div class="v">RM 96,400</div><div class="d up">+12%</div></div>
+        <div class="card"><div class="k" data-i18n="k_active">在建工程</div><div class="v">5</div><div class="d" data-i18n="k_activeD">1 个逾期</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 data-i18n="feedTitle">最近动态</h2></div>
+        <ul class="feed">
+          <li><b>王先生 · JED B-12-03</b><span data-i18n="f1">报价已发出 · 待确认</span><em data-i18n="t10m">10 分钟前</em></li>
+          <li><b>陈女士 · JED A-08-11</b><span data-i18n="f2">签约完成 · 已转工程</span><em data-i18n="t2h">2 小时前</em></li>
+          <li><b>林先生 · JED C-15-07</b><span data-i18n="f3">新增需求 · 待派单</span><em data-i18n="tYest">昨天</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 2 客户跟踪 ===== -->
+    <section class="page" id="page-customers">
+      <div class="toolbar">
+        <input class="input" data-i18n-ph="ph_searchCustomer" placeholder="搜索姓名 / 电话 / 房号">
+        <select class="input">
+          <option data-i18n="statusAll">全部状态</option>
+          <option data-i18n="st_new">新客户</option>
+          <option data-i18n="st_follow">跟进中</option>
+          <option data-i18n="st_quoted">已报价</option>
+          <option data-i18n="st_signed">已签单</option>
+        </select>
+        <button class="btn primary" data-i18n="btn_addCustomer">+ 新增客户</button>
+      </div>
+      <table class="table">
+        <thead><tr>
+          <th data-i18n="th_name">姓名</th><th data-i18n="th_phone">电话</th><th data-i18n="th_unit">项目/房号</th>
+          <th data-i18n="th_source">来源</th><th data-i18n="th_status">状态</th><th data-i18n="th_owner">跟进人</th><th data-i18n="th_action">操作</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>王先生</td><td>012-345 6789</td><td>JED Residensi · B-12-03</td><td data-i18n="src_online">线上广告</td><td><span class="tag blue" data-i18n="st_quoted">已报价</span></td><td>Nelson</td><td><a class="link-quote" data-i18n="act_quote">看报价</a></td></tr>
+          <tr><td>陈女士</td><td>019-876 5432</td><td>JED Residensi · A-08-11</td><td data-i18n="src_ref">转介绍</td><td><span class="tag green" data-i18n="st_signed">已签单</span></td><td>Jack</td><td><a class="link-quote" data-i18n="act_quote">看报价</a></td></tr>
+          <tr><td>林先生</td><td>016-222 3344</td><td>JED Residensi · C-15-07</td><td data-i18n="src_showroom">展厅</td><td><span class="tag gray" data-i18n="st_new">新客户</span></td><td>—</td><td><a class="link-quote" data-i18n="act_quote">看报价</a></td></tr>
+          <tr><td>黄小姐</td><td>011-999 8888</td><td>JED Residensi · D-02-09</td><td data-i18n="src_online">线上广告</td><td><span class="tag orange" data-i18n="st_follow">跟进中</span></td><td>Yao</td><td><a class="link-quote" data-i18n="act_quote">看报价</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===== 3.1 报价单 ===== -->
+    <section class="page" id="page-quotes">
       <div class="toolbar">
         <input class="input" data-i18n-ph="ph_searchQuote" placeholder="搜索客户 / 报价单号">
         <select class="input">
@@ -41,7 +96,7 @@
           <option data-i18n="qs_accepted">已接受</option>
           <option data-i18n="qs_rejected">已拒绝</option>
         </select>
-        <button class="btn primary" data-i18n="btn_addQuote">+ 新建报价</button>
+        <button class="btn primary" data-action="new-quote" data-i18n="btn_addQuote">+ 新建报价</button>
       </div>
       <table class="table">
         <thead><tr>
@@ -49,14 +104,14 @@
           <th data-i18n="th_amount">金额 (RM)</th><th data-i18n="th_status">状态</th><th data-i18n="th_validity">有效期</th><th data-i18n="th_action">操作</th>
         </tr></thead>
         <tbody>
-          <tr><td>Q-202609-014</td><td>王先生</td><td>JED · B-12-03</td><td>36,575</td><td><span class="tag blue" data-i18n="qs_sent">已发出</span></td><td>2026-10-08</td><td><a class="link-detail" data-quote="q014" data-i18n="act_view">查看明细</a></td></tr>
-          <tr><td>Q-202609-013</td><td>黄小姐</td><td>JED · D-02-09</td><td>26,800</td><td><span class="tag gray" data-i18n="qs_draft">草稿</span></td><td>—</td><td><a class="link-detail" data-quote="q013" data-i18n="act_view">查看明细</a></td></tr>
-          <tr><td>Q-202609-011</td><td>陈女士</td><td>JED · A-08-11</td><td>41,200</td><td><span class="tag green" data-i18n="qs_accepted">已接受</span></td><td>2026-09-30</td><td><a class="link-detail" data-quote="q011" data-i18n="act_view">查看明细</a></td></tr>
+          <tr><td>Q-202609-014</td><td>王先生</td><td>JED · B-12-03</td><td>32,851</td><td><span class="tag blue" data-i18n="qs_sent">已发出</span></td><td>2026-10-08</td><td><a class="link-detail" data-i18n="act_view">查看明细</a></td></tr>
+          <tr><td>Q-202609-013</td><td>黄小姐</td><td>JED · D-02-09</td><td>26,800</td><td><span class="tag gray" data-i18n="qs_draft">草稿</span></td><td>—</td><td><a class="link-detail" data-i18n="act_view">查看明细</a></td></tr>
+          <tr><td>Q-202609-011</td><td>陈女士</td><td>JED · A-08-11</td><td>41,200</td><td><span class="tag green" data-i18n="qs_accepted">已接受</span></td><td>2026-09-30</td><td><a class="link-detail" data-i18n="act_view">查看明细</a></td></tr>
         </tbody>
       </table>
     </section>
 
-    <!-- ===== 报价项库 ===== -->
+    <!-- ===== 3.2 报价项库 ===== -->
     <section class="page" id="page-items">
       <div class="toolbar">
         <input class="input" data-i18n-ph="ph_searchItem" placeholder="搜索项目名称">
@@ -68,7 +123,7 @@
           <option data-i18n="cat_tiling">泥水</option>
           <option data-i18n="cat_wiring">水电</option>
         </select>
-        <button class="btn primary" data-i18n="btn_addItem">+ 新增报价项</button>
+        <button class="btn primary" data-action="new-item" data-i18n="btn_addItem">+ 新增报价项</button>
       </div>
       <table class="table">
         <thead><tr>
@@ -88,7 +143,7 @@
       </table>
     </section>
 
-    <!-- ===== 报价明细 ===== -->
+    <!-- ===== 3.3 报价明细 ===== -->
     <section class="page" id="page-detail">
       <div class="detail-head">
         <div>
@@ -97,8 +152,8 @@
           <div class="dh-sub"><span data-i18n="d_valid">有效期</span>: 2026-10-08 · <span data-i18n="d_owner">负责人</span>: Nelson</div>
         </div>
         <div class="detail-actions">
-          <button class="btn" data-i18n="btn_print">打印 / 导出 PDF</button>
-          <button class="btn primary" data-i18n="btn_convert">转为签单</button>
+          <a class="btn" href="javascript:window.print()" data-i18n="btn_print">打印 / 导出 PDF</a>
+          <button class="btn primary" data-action="convert" data-i18n="btn_convert">转为签单</button>
         </div>
       </div>
 
@@ -126,58 +181,107 @@
         <div class="trow grand"><span data-i18n="t_total">总计</span><b>RM 32,851.00</b></div>
       </div>
     </section>
+
+    <!-- ===== 4 设定 ===== -->
+    <section class="page" id="page-settings">
+      <div class="panel">
+        <div class="panel-head"><h2 data-i18n="set_langTitle">语言</h2></div>
+        <div class="set-row">
+          <div><b data-i18n="set_langLabel">界面语言</b><div class="set-hint" data-i18n="set_langHint">切换后全站生效，并记住你的选择</div></div>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="zh">中文</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 data-i18n="set_companyTitle">公司信息</h2></div>
+        <div class="set-row"><div><b data-i18n="set_companyName">公司名称</b></div><div class="set-val">Rekareno · Simbaplus Engineering (M) Sdn Bhd</div></div>
+        <div class="set-row"><div><b data-i18n="set_currency">货币</b></div><div class="set-val">MYR (RM)</div></div>
+        <div class="set-row"><div><b data-i18n="set_defaultLang">默认语言</b></div><div class="set-val" data-i18n="set_defaultLangVal">中文</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 data-i18n="set_quoteTitle">报价设定</h2></div>
+        <div class="set-row"><div><b data-i18n="set_taxRate">默认税率</b></div><div class="set-val">0%</div></div>
+        <div class="set-row"><div><b data-i18n="set_discount">默认折扣</b></div><div class="set-val">5%</div></div>
+        <div class="set-row"><div><b data-i18n="set_validity">报价默认有效期</b></div><div class="set-val">14 <span data-i18n="set_days">天</span></div></div>
+      </div>
+    </section>
   </main>
 </div>
 
 <script>
 const I18N = {
   zh: {
-    brandSub:"报价模块 v0.2 原型", footNote:"P1 原型 · 非生产",
-    nav_quotes:"🧾 报价单", nav_items:"📚 报价项库", nav_detail:"📄 报价明细",
-    ph_searchQuote:"搜索客户 / 报价单号", ph_searchItem:"搜索项目名称",
-    qsAll:"全部状态", qs_draft:"草稿", qs_sent:"已发出", qs_accepted:"已接受", qs_rejected:"已拒绝",
-    btn_addQuote:"+ 新建报价", btn_addItem:"+ 新增报价项", btn_print:"打印 / 导出 PDF", btn_convert:"转为签单",
-    th_quoteNo:"报价单号", th_customer:"客户", th_unit:"项目/房号", th_amount:"金额 (RM)", th_status:"状态", th_validity:"有效期", th_action:"操作",
+    brandSub:"原型 v0.3", footNote:"P1 原型 · 非生产",
+    nav_overview:"1 · 总览", nav_customers:"2 · 客户跟踪", nav_quote:"3 · 报价区",
+    nav_quotes:"3.1 报价单", nav_items:"3.2 报价项库", nav_detail:"3.3 报价明细", nav_settings:"4 · 设定",
+    k_newCustomers:"本月新客户", k_newCustomersD:"+5 vs 上月", k_pendingQuotes:"待报价", k_pendingQuotesD:"3 条超 3 天",
+    k_signed:"已签单（本月）", k_active:"在建工程", k_activeD:"1 个逾期",
+    feedTitle:"最近动态", f1:"报价已发出 · 待确认", f2:"签约完成 · 已转工程", f3:"新增需求 · 待派单",
+    t10m:"10 分钟前", t2h:"2 小时前", tYest:"昨天",
+    ph_searchCustomer:"搜索姓名 / 电话 / 房号", ph_searchQuote:"搜索客户 / 报价单号", ph_searchItem:"搜索项目名称",
+    statusAll:"全部状态", st_new:"新客户", st_follow:"跟进中", st_quoted:"已报价", st_signed:"已签单",
+    btn_addCustomer:"+ 新增客户", btn_addQuote:"+ 新建报价", btn_addItem:"+ 新增报价项",
+    act_quote:"看报价", act_view:"查看明细",
+    th_name:"姓名", th_phone:"电话", th_unit:"项目/房号", th_source:"来源", th_status:"状态", th_owner:"跟进人", th_action:"操作",
+    th_quoteNo:"报价单号", th_customer:"客户", th_amount:"金额 (RM)", th_validity:"有效期",
     th_itemName:"项目名称", th_category:"类别", th_unitType:"单位", th_unitPrice:"单价 (RM)", th_note:"备注",
     th_space:"区域", th_qty:"数量", th_subtotal:"小计 (RM)",
-    act_view:"查看明细",
     catAll:"全部类别", cat_carpentry:"木工", cat_custom:"定制", cat_paint:"油漆", cat_tiling:"泥水", cat_wiring:"水电",
     it_ceiling:"石膏板吊顶", it_wardrobe:"衣柜定制", it_kitchen:"厨房橱柜", it_paint:"全屋油漆",
     it_tiling:"地砖铺贴", it_wiring:"水电改造", it_lighting:"灯具安装", it_floor:"地板铺装",
     note_m2:"按展开面积", note_ply:"含板材+五金", note_top:"含台面", note_coat:"含底漆一底两面",
     note_tile:"不含瓷砖主材", note_point:"按点位计", note_light:"含安装人工", note_floor:"含防潮垫",
+    qsAll:"全部状态", qs_draft:"草稿", qs_sent:"已发出", qs_accepted:"已接受", qs_rejected:"已拒绝",
     d_customer:"客户", d_layout:"户型", d_valid:"有效期", d_owner:"负责人", ly_3r2l_1100:"3房2厅 · 1100sqft",
     sp_living:"客厅", sp_master:"主卧", sp_kitchen:"厨房", sp_all:"全屋", sp_2nd:"次卧",
-    t_subtotal:"小计", t_discount:"折扣 (-5%)", t_tax:"税", t_total:"总计"
+    t_subtotal:"小计", t_discount:"折扣 (-5%)", t_tax:"税", t_total:"总计",
+    btn_print:"打印 / 导出 PDF", btn_convert:"转为签单",
+    set_langTitle:"语言", set_langLabel:"界面语言", set_langHint:"切换后全站生效，并记住你的选择",
+    set_companyTitle:"公司信息", set_companyName:"公司名称", set_currency:"货币", set_defaultLang:"默认语言", set_defaultLangVal:"中文",
+    set_quoteTitle:"报价设定", set_taxRate:"默认税率", set_discount:"默认折扣", set_validity:"报价默认有效期", set_days:"天",
+    src_online:"线上广告", src_ref:"转介绍", src_showroom:"展厅"
   },
   en: {
-    brandSub:"Quotation Module v0.2 Prototype", footNote:"P1 Prototype · Non-production",
-    nav_quotes:"🧾 Quotations", nav_items:"📚 Item Library", nav_detail:"📄 Quote Detail",
-    ph_searchQuote:"Search customer / quote no.", ph_searchItem:"Search item name",
-    qsAll:"All statuses", qs_draft:"Draft", qs_sent:"Sent", qs_accepted:"Accepted", qs_rejected:"Rejected",
-    btn_addQuote:"+ New Quote", btn_addItem:"+ Add Item", btn_print:"Print / Export PDF", btn_convert:"Convert to Deal",
-    th_quoteNo:"Quote No.", th_customer:"Customer", th_unit:"Project / Unit", th_amount:"Amount (RM)", th_status:"Status", th_validity:"Valid Until", th_action:"Action",
+    brandSub:"Prototype v0.3", footNote:"P1 Prototype · Non-production",
+    nav_overview:"1 · Overview", nav_customers:"2 · Customer Tracking", nav_quote:"3 · Quotation",
+    nav_quotes:"3.1 Quotations", nav_items:"3.2 Item Library", nav_detail:"3.3 Quote Detail", nav_settings:"4 · Settings",
+    k_newCustomers:"New Customers (MTD)", k_newCustomersD:"+5 vs last month", k_pendingQuotes:"Pending Quotes", k_pendingQuotesD:"3 over 3 days",
+    k_signed:"Signed (MTD)", k_active:"Active Projects", k_activeD:"1 overdue",
+    feedTitle:"Recent Activity", f1:"Quote sent · awaiting confirmation", f2:"Contract signed · moved to projects", f3:"New request · unassigned",
+    t10m:"10 min ago", t2h:"2 hours ago", tYest:"Yesterday",
+    ph_searchCustomer:"Search name / phone / unit", ph_searchQuote:"Search customer / quote no.", ph_searchItem:"Search item name",
+    statusAll:"All statuses", st_new:"New", st_follow:"Following up", st_quoted:"Quoted", st_signed:"Signed",
+    btn_addCustomer:"+ Add Customer", btn_addQuote:"+ New Quote", btn_addItem:"+ Add Item",
+    act_quote:"View Quote", act_view:"View Detail",
+    th_name:"Name", th_phone:"Phone", th_unit:"Project / Unit", th_source:"Source", th_status:"Status", th_owner:"Owner", th_action:"Action",
+    th_quoteNo:"Quote No.", th_customer:"Customer", th_amount:"Amount (RM)", th_validity:"Valid Until",
     th_itemName:"Item Name", th_category:"Category", th_unitType:"Unit", th_unitPrice:"Unit Price (RM)", th_note:"Note",
     th_space:"Area", th_qty:"Qty", th_subtotal:"Subtotal (RM)",
-    act_view:"View Detail",
     catAll:"All categories", cat_carpentry:"Carpentry", cat_custom:"Custom", cat_paint:"Painting", cat_tiling:"Masonry", cat_wiring:"Plumbing & Electrical",
     it_ceiling:"Gypsum Ceiling", it_wardrobe:"Custom Wardrobe", it_kitchen:"Kitchen Cabinet", it_paint:"Whole-unit Painting",
     it_tiling:"Floor Tiling", it_wiring:"Wiring & Plumbing", it_lighting:"Lighting Installation", it_floor:"Flooring",
     note_m2:"By surface area", note_ply:"Incl. board + hardware", note_top:"Incl. countertop", note_coat:"Incl. primer + 2 coats",
     note_tile:"Excl. tiles", note_point:"Per point", note_light:"Incl. labour", note_floor:"Incl. underlay",
+    qsAll:"All statuses", qs_draft:"Draft", qs_sent:"Sent", qs_accepted:"Accepted", qs_rejected:"Rejected",
     d_customer:"Customer", d_layout:"Layout", d_valid:"Valid Until", d_owner:"Owner", ly_3r2l_1100:"3BR2LR · 1100sqft",
     sp_living:"Living Room", sp_master:"Master Bedroom", sp_kitchen:"Kitchen", sp_all:"Whole Unit", sp_2nd:"2nd Bedroom",
-    t_subtotal:"Subtotal", t_discount:"Discount (-5%)", t_tax:"Tax", t_total:"Total"
+    t_subtotal:"Subtotal", t_discount:"Discount (-5%)", t_tax:"Tax", t_total:"Total",
+    btn_print:"Print / Export PDF", btn_convert:"Convert to Deal",
+    set_langTitle:"Language", set_langLabel:"Interface Language", set_langHint:"Applies site-wide and remembers your choice",
+    set_companyTitle:"Company", set_companyName:"Company Name", set_currency:"Currency", set_defaultLang:"Default Language", set_defaultLangVal:"Chinese",
+    set_quoteTitle:"Quotation Settings", set_taxRate:"Default Tax Rate", set_discount:"Default Discount", set_validity:"Default Quote Validity", set_days:"days",
+    src_online:"Online Ads", src_ref:"Referral", src_showroom:"Showroom"
   }
 };
 
 let LANG='zh';
-const TITLE_KEY={quotes:'nav_quotes',items:'nav_items',detail:'nav_detail'};
-let CURRENT_PAGE='quotes';
+const TITLE_KEY={overview:'nav_overview',customers:'nav_customers',quotes:'nav_quotes',items:'nav_items',detail:'nav_detail',settings:'nav_settings'};
+let CURRENT_PAGE='overview';
 
-function refreshTitle(){
-  document.getElementById('pageTitle').textContent = I18N[LANG][TITLE_KEY[CURRENT_PAGE]];
-}
+function refreshTitle(){ document.getElementById('pageTitle').textContent = I18N[LANG][TITLE_KEY[CURRENT_PAGE]]; }
+
 function applyLang(lang){
   LANG=lang; const d=I18N[lang];
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(d[k]) el.textContent=d[k];});
@@ -187,16 +291,42 @@ function applyLang(lang){
   try{localStorage.setItem('rekareno_lang',lang);}catch(e){}
   refreshTitle();
 }
+
 function goPage(p){
   CURRENT_PAGE=p;
-  document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active', x.dataset.page===p));
+  document.querySelectorAll('.nav-item,.nav-child').forEach(x=>x.classList.toggle('active', x.dataset.page===p));
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById('page-'+p).classList.add('active');
+  const el=document.getElementById('page-'+p); if(el) el.classList.add('active');
   refreshTitle();
 }
-document.querySelectorAll('.nav-item').forEach(a=>a.onclick=()=>goPage(a.dataset.page));
+
+// 菜单：一级项
+document.querySelectorAll('.nav-item[data-page]').forEach(a=>a.onclick=()=>goPage(a.dataset.page));
+// 菜单：报价区展开/收起
+document.querySelectorAll('.nav-parent').forEach(a=>a.onclick=()=>{
+  const c=document.getElementById('childQuote');
+  const open=c.classList.toggle('open');
+  a.classList.toggle('open', open);
+});
+// 菜单：二级项
+document.querySelectorAll('.nav-child').forEach(a=>a.onclick=e=>{ e.stopPropagation(); goPage(a.dataset.page); });
+// 语言切换
 document.querySelectorAll('.lang-btn').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang));
+// 跳转链接
 document.querySelectorAll('.link-detail').forEach(a=>a.onclick=()=>goPage('detail'));
+document.querySelectorAll('.link-quote').forEach(a=>a.onclick=()=>goPage('quotes'));
+// 可点击卡片
+document.querySelectorAll('[data-goto]').forEach(el=>el.onclick=()=>goPage(el.dataset.goto));
+// 按钮动作（原型提示）
+document.querySelectorAll('[data-action]').forEach(btn=>btn.onclick=()=>{
+  const msg={ 'new-quote':{zh:'新建报价：原型阶段为演示，正式版将打开报价编辑页',en:'New Quote: demo in prototype; the live build opens the quote editor'},
+              'new-item':{zh:'新增报价项：原型阶段为演示，正式版将打开录入表单',en:'Add Item: demo in prototype; the live build opens the entry form'},
+              'convert':{zh:'转为签单：原型阶段为演示，正式版将生成合同',en:'Convert to Deal: demo in prototype; the live build creates a contract'} }[btn.dataset.action];
+  alert(LANG==='zh'?msg.zh:msg.en);
+});
+// 报价区默认展开
+document.getElementById('childQuote').classList.add('open');
+document.querySelector('.nav-parent').classList.add('open');
 
 let saved='zh';
 try{saved=localStorage.getItem('rekareno_lang')||'zh';}catch(e){}

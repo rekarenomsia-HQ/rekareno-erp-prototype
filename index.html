@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rekareno ERP · 原型</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">R</span><div><b>Rekareno ERP</b><small>核心闭环 v0.1 原型</small></div></div>
+    <nav>
+      <a class="nav-item active" data-page="dashboard">📊 工作台</a>
+      <a class="nav-item" data-page="customers">👤 客户管理</a>
+      <a class="nav-item" data-page="quotes">🧾 需求报价</a>
+      <a class="nav-item" data-page="deals">✍️ 签单管理</a>
+      <a class="nav-item" data-page="projects">🏗️ 工程进度</a>
+    </nav>
+    <div class="sidebar-foot">P1 原型 · 非生产</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 id="pageTitle">工作台</h1>
+      <div class="topbar-right"><span class="pill">Mr Sheldom</span><span class="pill ghost">平台管理员</span></div>
+    </header>
+
+    <section class="page active" id="page-dashboard">
+      <div class="cards">
+        <div class="card"><div class="k">本月新客户</div><div class="v">18</div><div class="d up">+5 vs 上月</div></div>
+        <div class="card"><div class="k">待报价</div><div class="v">7</div><div class="d">3 条超 3 天</div></div>
+        <div class="card"><div class="k">已签单（本月）</div><div class="v">RM 96,400</div><div class="d up">+12%</div></div>
+        <div class="card"><div class="k">在建工程</div><div class="v">5</div><div class="d">1 个逾期</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>最近动态</h2></div>
+        <ul class="feed">
+          <li><b>王先生 · JED B-12-03</b><span>报价已发出 · 待确认</span><em>10 分钟前</em></li>
+          <li><b>陈女士 · JED A-08-11</b><span>签约完成 · 已转工程</span><em>2 小时前</em></li>
+          <li><b>林先生 · JED C-15-07</b><span>新增需求 · 待派单</span><em>昨天</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="page" id="page-customers">
+      <div class="toolbar">
+        <input class="input" placeholder="搜索姓名 / 电话 / 房号">
+        <select class="input"><option>全部状态</option><option>新客户</option><option>跟进中</option><option>已报价</option><option>已签单</option></select>
+        <button class="btn primary">+ 新增客户</button>
+      </div>
+      <table class="table">
+        <thead><tr><th>姓名</th><th>电话</th><th>项目/房号</th><th>来源</th><th>状态</th><th>跟进人</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td>王先生</td><td>012-345 6789</td><td>JED Residensi · B-12-03</td><td>线上广告</td><td><span class="tag blue">已报价</span></td><td>Nelson</td><td><a>详情</a></td></tr>
+          <tr><td>陈女士</td><td>019-876 5432</td><td>JED Residensi · A-08-11</td><td>转介绍</td><td><span class="tag green">已签单</span></td><td>Jack</td><td><a>详情</a></td></tr>
+          <tr><td>林先生</td><td>016-222 3344</td><td>JED Residensi · C-15-07</td><td>展厅</td><td><span class="tag gray">新客户</span></td><td>—</td><td><a>详情</a></td></tr>
+          <tr><td>黄小姐</td><td>011-999 8888</td><td>JED Residensi · D-02-09</td><td>线上广告</td><td><span class="tag orange">跟进中</span></td><td>Yao</td><td><a>详情</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page" id="page-quotes">
+      <div class="toolbar">
+        <input class="input" placeholder="搜索客户 / 报价单号">
+        <button class="btn primary">+ 新建报价</button>
+      </div>
+      <table class="table">
+        <thead><tr><th>报价单号</th><th>客户</th><th>户型</th><th>金额 (RM)</th><th>状态</th><th>有效期</th></tr></thead>
+        <tbody>
+          <tr><td>Q-202609-014</td><td>王先生</td><td>3房2厅 · 1100sqft</td><td>38,500</td><td><span class="tag blue">已发出</span></td><td>2026-10-08</td></tr>
+          <tr><td>Q-202609-013</td><td>黄小姐</td><td>2房1厅 · 850sqft</td><td>26,800</td><td><span class="tag gray">草稿</span></td><td>—</td></tr>
+          <tr><td>Q-202609-011</td><td>陈女士</td><td>3房2厅 · 1150sqft</td><td>41,200</td><td><span class="tag green">已接受</span></td><td>2026-09-30</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page" id="page-deals">
+      <div class="toolbar"><input class="input" placeholder="搜索客户 / 合同号"><button class="btn primary">+ 新建签单</button></div>
+      <table class="table">
+        <thead><tr><th>合同号</th><th>客户</th><th>签约金额 (RM)</th><th>签约日期</th><th>付款计划</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>C-202609-007</td><td>陈女士</td><td>41,200</td><td>2026-09-22</td><td>30/40/30</td><td><span class="tag green">已生效</span></td></tr>
+          <tr><td>C-202609-006</td><td>李先生</td><td>55,000</td><td>2026-09-15</td><td>30/40/30</td><td><span class="tag blue">待付定金</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="page" id="page-projects">
+      <div class="toolbar"><input class="input" placeholder="搜索工程 / 客户"><select class="input"><option>全部阶段</option><option>待开工</option><option>施工中</option><option>已完工</option></select></div>
+      <table class="table">
+        <thead><tr><th>工程号</th><th>客户/房号</th><th>阶段</th><th>进度</th><th>负责人</th><th>预计完工</th></tr></thead>
+        <tbody>
+          <tr><td>P-202609-004</td><td>陈女士 · A-08-11</td><td>泥水</td><td><div class="bar"><i style="width:45%"></i></div>45%</td><td>承包商 A</td><td>2026-10-20</td></tr>
+          <tr><td>P-202609-003</td><td>李先生 · B-03-05</td><td>水电</td><td><div class="bar"><i style="width:20%"></i></div>20%</td><td>承包商 B</td><td>2026-11-05</td></tr>
+          <tr><td>P-202608-011</td><td>张先生 · A-11-02</td><td>油漆</td><td><div class="bar"><i style="width:85%"></i></div>85%</td><td>承包商 A</td><td>2026-09-28</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+<script>
+const titles={dashboard:'工作台',customers:'客户管理',quotes:'需求报价',deals:'签单管理',projects:'工程进度'};
+document.querySelectorAll('.nav-item').forEach(a=>a.onclick=()=>{
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  a.classList.add('active');
+  document.getElementById('page-'+a.dataset.page).classList.add('active');
+  document.getElementById('pageTitle').textContent=titles[a.dataset.page];
+});
+</script>
+</body>
+</html>

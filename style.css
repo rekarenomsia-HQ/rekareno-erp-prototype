@@ -1,0 +1,57 @@
+:root{
+  --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#272c37;
+  --txt:#e8eaf0; --muted:#8b93a7; --brand:#3b82f6; --brand2:#1d4ed8;
+  --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--txt)}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:16px 0}
+.brand{display:flex;gap:10px;align-items:center;padding:0 18px 18px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;font-weight:800;font-size:20px}
+.brand b{display:block;font-size:15px}
+.brand small{color:var(--muted);font-size:11px}
+nav{display:flex;flex-direction:column;gap:4px;padding:0 10px}
+.nav-item{padding:10px 12px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:14px;transition:.15s}
+.nav-item:hover{background:var(--panel2);color:var(--txt)}
+.nav-item.active{background:var(--brand);color:#fff;font-weight:600}
+.sidebar-foot{margin-top:auto;padding:14px 18px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line);background:var(--panel)}
+.topbar h1{font-size:18px;margin:0}
+.topbar-right{display:flex;gap:8px}
+.pill{background:var(--panel2);border:1px solid var(--line);padding:5px 12px;border-radius:20px;font-size:12px}
+.pill.ghost{color:var(--muted)}
+.page{display:none;padding:24px;overflow:auto}
+.page.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card .k{color:var(--muted);font-size:13px;margin-bottom:8px}
+.card .v{font-size:26px;font-weight:700}
+.card .d{font-size:12px;color:var(--muted);margin-top:6px}
+.card .d.up{color:var(--green)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.panel-head{padding:14px 18px;border-bottom:1px solid var(--line)}
+.panel-head h2{font-size:15px;margin:0}
+.feed{list-style:none;margin:0;padding:0}
+.feed li{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.feed li:last-child{border-bottom:0}
+.feed li b{min-width:170px}
+.feed li span{color:var(--muted);flex:1}
+.feed li em{color:var(--muted);font-style:normal;font-size:12px}
+.toolbar{display:flex;gap:10px;margin-bottom:16px}
+.input{background:var(--panel2);border:1px solid var(--line);color:var(--txt);padding:9px 12px;border-radius:8px;font-size:13px;min-width:220px}
+.btn{padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);cursor:pointer;font-size:13px}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;margin-left:auto}
+.table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13px}
+.table th{text-align:left;padding:12px 14px;background:var(--panel2);color:var(--muted);font-weight:600;border-bottom:1px solid var(--line)}
+.table td{padding:12px 14px;border-bottom:1px solid var(--line)}
+.table tr:last-child td{border-bottom:0}
+.table a{color:var(--brand);cursor:pointer;text-decoration:none}
+.tag{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.tag.blue{background:rgba(59,130,246,.15);color:#60a5fa}
+.tag.green{background:rgba(34,197,94,.15);color:#4ade80}
+.tag.orange{background:rgba(245,158,11,.15);color:#fbbf24}
+.tag.gray{background:rgba(139,147,167,.15);color:#a3aab8}
+.bar{width:90px;height:6px;background:var(--panel2);border-radius:4px;display:inline-block;vertical-align:middle;margin-right:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand)}

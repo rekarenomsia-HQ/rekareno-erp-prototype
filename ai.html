@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekareno AI 助手 · Demo</title>
+<style>
+  :root{--orange:#f97316;--orange2:#ea580c;--dark:#0f1115;--panel:#171a21;
+        --muted:#9aa2b4;--line:#262b36;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--dark);color:#e8eaed;font-family:"Microsoft YaHei",
+       -apple-system,Segoe UI,sans-serif;height:100vh;display:flex;
+       flex-direction:column;overflow:hidden}
+  header{background:var(--panel);border-bottom:1px solid var(--line);
+         padding:14px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .logo{width:38px;height:38px;border-radius:9px;background:var(--orange);
+        display:flex;align-items:center;justify-content:center;font-weight:800;
+        font-size:20px;color:#fff;flex-shrink:0}
+  .ttl{font-size:16px;font-weight:700}
+  .sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .pill{margin-left:auto;font-size:10.5px;background:#1f2937;color:#4ade80;
+        padding:4px 9px;border-radius:20px;border:1px solid #166534;white-space:nowrap}
+  #chat{flex:1;overflow-y:auto;padding:20px 16px;display:flex;
+        flex-direction:column;gap:14px}
+  .msg{max-width:80%;padding:11px 15px;border-radius:14px;font-size:14px;
+       line-height:1.65;white-space:pre-wrap;word-wrap:break-word}
+  .me{align-self:flex-end;background:var(--orange);color:#fff;
+      border-bottom-right-radius:4px}
+  .ai{align-self:flex-start;background:var(--panel);border:1px solid var(--line);
+      border-bottom-left-radius:4px;color:#dfe3e8}
+  .ai b{color:var(--orange)}
+  .err{align-self:flex-start;background:#2a1518;border:1px solid #7f1d1d;
+       color:#fca5a5;font-size:13px;padding:10px 14px;border-radius:12px;max-width:85%}
+  .think{align-self:flex-start;color:var(--muted);font-size:12.5px;padding-left:6px}
+  .welcome{align-self:center;text-align:center;color:var(--muted);font-size:12.5px;
+           padding:8px 0;line-height:1.8;max-width:560px}
+  .welcome h3{color:#e8eaed;font-size:15px;margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+  .chip{background:#1f2937;border:1px solid var(--line);color:#cbd5e1;
+        padding:8px 13px;border-radius:20px;font-size:12px;cursor:pointer;
+        transition:.15s}
+  .chip:hover{border-color:var(--orange);color:var(--orange)}
+  footer{border-top:1px solid var(--line);padding:12px 14px;background:var(--panel);
+         flex-shrink:0}
+  .bar{display:flex;gap:10px;max-width:1000px;margin:0 auto;width:100%}
+  input{flex:1;background:#0b0d11;border:1px solid var(--line);color:#e8eaed;
+        padding:13px 16px;border-radius:11px;font-size:14px;outline:none;
+        font-family:inherit}
+  input:focus{border-color:var(--orange)}
+  button{background:var(--orange);border:none;color:#fff;padding:0 22px;
+         border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;
+         font-family:inherit}
+  button:hover{background:var(--orange2)}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .disc{text-align:center;color:#5b6272;font-size:10.5px;margin-top:9px}
+  #keybar{background:#1a1d24;border-bottom:1px solid var(--line);padding:10px 14px;
+          display:flex;gap:8px;align-items:center;flex-shrink:0}
+  #keybar input{flex:1;background:#0b0d11;border:1px solid var(--line);color:#e8eaed;
+                padding:9px 13px;border-radius:9px;font-size:12.5px;font-family:monospace}
+  #keybar button{padding:0 16px;font-size:12.5px}
+  #keybar .hint{color:var(--muted);font-size:11px;white-space:nowrap}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">R</div>
+  <div>
+    <div class="ttl">Rekareno AI 助手</div>
+    <div class="sub">装修材料 · 人工行情 · 方案咨询</div>
+  </div>
+  <div class="pill" id="status">● Demo</div>
+</header>
+
+<div id="keybar">
+  <span class="hint">API Key</span>
+  <input id="key" type="password" placeholder="粘贴你的 Gemini API Key（只存在你手机里，不上传）">
+  <button id="saveKey">保存</button>
+</div>
+
+<div id="chat">
+  <div class="welcome" id="welcome">
+    <h3>你好！我是 Rekareno AI 助手 👋</h3>
+    装修材料、人工费用、方案咨询，尽管问我。
+    <div class="chips">
+      <div class="chip">马来西亚石膏板吊顶多少钱一平？</div>
+      <div class="chip">岩板、石英石、大理石做厨房台面哪个好？</div>
+      <div class="chip">铺地砖人工费怎么算？</div>
+      <div class="chip">预算 RM30000 装修怎么分配？</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="bar">
+    <input id="q" placeholder="输入你的装修问题…" autocomplete="off">
+    <button id="send">发送</button>
+  </div>
+  <div class="disc">⚠️ 回答由 AI 生成，仅供参考；实际价格以现场测量与正式报价为准。</div>
+</footer>
+
+<script>
+var MODEL = "gemini-flash-latest";
+var URL = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent";
+
+var SYSTEM = "你是 Rekareno 平台的装修咨询 AI 助手，服务马来西亚（尤其雪隆一带）的业主。\n"
+ + "专长：\n"
+ + "1. 装修材料性质对比（岩板/石英石/大理石、地砖、地板、油漆、板材等）\n"
+ + "2. 材料与人工的市场行情价格（马来西亚，以 RM 计价）\n"
+ + "3. 装修方案与预算分配建议\n"
+ + "回答要求：\n"
+ + "- 用中文，条理清晰，分点作答\n"
+ + "- 涉及价格时给出合理区间，并注明「仅为市场参考价，实际以现场报价为准」\n"
+ + "- 不确定的不要编造，直接说明需要现场评估\n"
+ + "- 语气亲切专业，像一个懂行的装修顾问";
+
+var chat = document.getElementById('chat');
+var q = document.getElementById('q');
+var send = document.getElementById('send');
+var welcome = document.getElementById('welcome');
+var keyInput = document.getElementById('key');
+var saveKey = document.getElementById('saveKey');
+var statusEl = document.getElementById('status');
+
+var API_KEY = localStorage.getItem('rekareno_gemini_key') || '';
+if (API_KEY) { keyInput.value = API_KEY; statusEl.textContent = '● 已配置'; }
+
+saveKey.onclick = function(){
+  API_KEY = keyInput.value.trim();
+  if (API_KEY) {
+    localStorage.setItem('rekareno_gemini_key', API_KEY);
+    statusEl.textContent = '● 已配置';
+    alert('Key 已保存在这台设备的浏览器里。');
+  } else {
+    localStorage.removeItem('rekareno_gemini_key');
+    statusEl.textContent = '● Demo';
+  }
+};
+
+function addMsg(cls, text){
+  var d = document.createElement('div');
+  d.className = 'msg ' + cls;
+  d.textContent = text;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+  return d;
+}
+
+function ask(question){
+  question = (question || '').trim();
+  if(!question) return;
+  if(!API_KEY){ alert('请先在上面粘贴 Gemini API Key 并保存。'); return; }
+  if(welcome) welcome.remove();
+  addMsg('me', question);
+  q.value = '';
+  send.disabled = true;
+
+  var thinking = document.createElement('div');
+  thinking.className = 'think';
+  thinking.textContent = 'AI 正在思考…';
+  chat.appendChild(thinking);
+  chat.scrollTop = chat.scrollHeight;
+
+  fetch(URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': API_KEY },
+    body: JSON.stringify({
+      system_instruction: {parts: [{text: SYSTEM}]},
+      contents: [{role: 'user', parts: [{text: question}]}],
+      generationConfig: {temperature: 0.7, maxOutputTokens: 1024}
+    })
+  }).then(function(r){ return r.json(); }).then(function(data){
+    thinking.remove();
+    if(data.error){
+      var e = document.createElement('div');
+      e.className = 'err';
+      e.textContent = '❌ ' + (data.error.message || 'API 错误');
+      chat.appendChild(e);
+    } else {
+      var parts = (data.candidates && data.candidates[0] &&
+                   data.candidates[0].content && data.candidates[0].content.parts) || [];
+      var reply = parts.map(function(p){ return p.text || ''; }).join('').trim();
+      if(reply){
+        var el = addMsg('ai', reply);
+        el.innerHTML = el.textContent.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+      } else {
+        addMsg('ai', '（没有收到内容，请再试一次）');
+      }
+    }
+    send.disabled = false;
+    q.focus();
+    chat.scrollTop = chat.scrollHeight;
+  }).catch(function(e){
+    thinking.remove();
+    var er = document.createElement('div');
+    er.className = 'err';
+    er.textContent = '❌ 连接失败：' + e.message;
+    chat.appendChild(er);
+    send.disabled = false;
+  });
+}
+
+send.onclick = function(){ ask(q.value); };
+q.addEventListener('keydown', function(e){ if(e.key === 'Enter') ask(q.value); });
+var chips = document.querySelectorAll('.chip');
+for(var i=0;i<chips.length;i++){
+  (function(c){ c.onclick = function(){ ask(c.textContent); }; })(chips[i]);
+}
+</script>
+</body>
+</html>
